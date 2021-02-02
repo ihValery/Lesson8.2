@@ -26,6 +26,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         setMyDesign()
+        setColor()                                                      //что бы сразу цвета и значения подгрузились
+        setValueForLabel()
+        setValueForTextField()
         
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -34,19 +37,18 @@ class ViewController: UIViewController {
     @IBAction func rgbSliderAction(_ sender: UISlider) {
         switch sender.tag {                                                //выделяем Slider -> Attributes inspector -> View -> Tag
         case 0:
-            redLabel.text = String(sender.value)
-            redTextField.text = String(sender.value)
+            redLabel.text = strRound(from: sender)
+            redTextField.text = strRound(from: sender)
         case 1:
-            greenLabel.text = String(sender.value)
-            greenTextField.text = String(sender.value)
+            greenLabel.text = strRound(from: sender)
+            greenTextField.text = strRound(from: sender)
         case 2:
-            blueLabel.text = String(sender.value)
-            blueTextField.text = String(sender.value)
+            blueLabel.text = strRound(from: sender)
+            blueTextField.text = strRound(from: sender)
         default:
             break
         }
-        
-        
+        setColor()
     }
     
     
@@ -55,21 +57,35 @@ class ViewController: UIViewController {
         
         redSlider.tintColor = .red
         greenSlider.tintColor = .green
-//        blueSlider.tintColor = .systemBlue
+
+        redSlider.value = 0.3
+        greenSlider.value = 0.5
+        blueSlider.value = 0.7
     }
     
+    //из другого класса не вызываем поэтому private
+    private func setColor() {                                                  //установка цвета View
+        colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
+                                            green: CGFloat(greenSlider.value),
+                                            blue: CGFloat(blueSlider.value),
+                                            alpha: 1)
+    }
+
+    func setValueForLabel() {                                               //установка значения для лейбла
+        redLabel.text = strRound(from: redSlider)
+        greenLabel.text = strRound(from: greenSlider)
+        blueLabel.text = strRound(from: blueSlider)
+    }
+
+    func setValueForTextField() {                                           //установка значения для текстового поля
+        redTextField.text = strRound(from: redSlider)
+        greenTextField.text = strRound(from: greenSlider)
+        blueTextField.text = strRound(from: blueSlider)
+    }
     
-//    func setColor() {                                                       //установка цвета
-//        <#function body#>
-//    }
-//
-//    func setValueForLabel() {                                               //установка значения для лейбла
-//        <#function body#>
-//    }
-//
-//    func setValueForTextField() {                                           //установка значения для текстового поля
-//        <#function body#>
-//    }
-    
+    //преоброзование в строку и сразу округление что бы не писать каждый раз
+    func strRound(from slider: UISlider) -> String {
+        String(format: "%.2f", slider.value)
+    }
 }
 
