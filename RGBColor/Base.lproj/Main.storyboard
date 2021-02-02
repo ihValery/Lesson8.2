@@ -12,18 +12,17 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RGBColor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wCA-bX-E20">
-                                <rect key="frame" x="16" y="44" width="358" height="310"/>
+                                <rect key="frame" x="16" y="69" width="358" height="310"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSP-BM-qtc">
                                         <rect key="frame" x="0.0" y="0.0" width="358" height="150"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="vGX-DB-zoW">
                                         <rect key="frame" x="0.0" y="160" width="358" height="150"/>
@@ -108,12 +107,21 @@
                                                         <subviews>
                                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FFh-Yz-pgq">
                                                                 <rect key="frame" x="-2" y="0.0" width="216" height="51"/>
+                                                                <connections>
+                                                                    <action selector="rgbSliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="jaX-J9-16C"/>
+                                                                </connections>
                                                             </slider>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gjd-oa-bjS">
+                                                            <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Gjd-oa-bjS">
                                                                 <rect key="frame" x="-2" y="50" width="216" height="51"/>
+                                                                <connections>
+                                                                    <action selector="rgbSliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="aiD-d1-uMk"/>
+                                                                </connections>
                                                             </slider>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-MW-AUe">
+                                                            <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-MW-AUe">
                                                                 <rect key="frame" x="-2" y="100" width="216" height="51"/>
+                                                                <connections>
+                                                                    <action selector="rgbSliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="2cD-61-Stb"/>
+                                                                </connections>
                                                             </slider>
                                                         </subviews>
                                                     </stackView>
@@ -176,14 +184,27 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wCA-bX-E20" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="DFr-fm-Dwj"/>
                             <constraint firstItem="wCA-bX-E20" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Mqi-xx-1DL"/>
-                            <constraint firstItem="wCA-bX-E20" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nSM-nr-Iu4"/>
+                            <constraint firstItem="wCA-bX-E20" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="Tlq-As-mDU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="blueLabel" destination="yYL-J8-66i" id="FeH-tU-1yy"/>
+                        <outlet property="blueSlider" destination="HXR-MW-AUe" id="HGQ-Q6-ORw"/>
+                        <outlet property="blueTextField" destination="Bpu-hC-q7o" id="px9-Im-weY"/>
+                        <outlet property="colorView" destination="dSP-BM-qtc" id="8Cr-bT-BHt"/>
+                        <outlet property="greenLabel" destination="AY8-CN-6Tp" id="18g-bE-Li0"/>
+                        <outlet property="greenSlider" destination="Gjd-oa-bjS" id="b9j-0K-aPR"/>
+                        <outlet property="greenTextField" destination="OYs-r0-pOA" id="tnQ-d2-2Vz"/>
+                        <outlet property="redLabel" destination="x7A-Hw-UFW" id="BrC-7t-ceZ"/>
+                        <outlet property="redSlider" destination="FFh-Yz-pgq" id="2v2-oJ-NDw"/>
+                        <outlet property="redTextField" destination="JWz-55-WU6" id="AXA-yf-thQ"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-113.84615384615384" y="0.0"/>
         </scene>
