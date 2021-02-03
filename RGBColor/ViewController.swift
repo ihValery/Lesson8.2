@@ -53,6 +53,13 @@ class ViewController: UIViewController {
         setColor()
     }
     
+    @IBAction func TextFieldAction(_ sender: UITextField) {
+        redTextField.keyboardType = .decimalPad
+        greenTextField.keyboardType = .decimalPad
+        blueTextField.keyboardType = .decimalPad
+        textFieldDidEndEditing(sender)
+        
+    }
     
     func setMyDesign() {
         colorView.layer.cornerRadius = 15                                   //закругление краев
@@ -71,6 +78,7 @@ class ViewController: UIViewController {
                                             green: CGFloat(greenSlider.value),
                                             blue: CGFloat(blueSlider.value),
                                             alpha: 1)
+        
     }
 
     func setValueForLabel() {                                               //установка значения для лейбла
@@ -109,17 +117,17 @@ extension ViewController: UITextFieldDelegate {
             return
         }
         if let currentValue = Float(text) {
-            switch textField.tag {                                        //тоже tag настраиваем
-            case 0: redSlider.value = currentValue
-            case 1: greenSlider.value = currentValue
-            case 2: blueSlider.value = currentValue
-            default: break
-            }
-            setColor()
-            setValueForLabel()
-        } else {
-            showAllert(tittle: "Не тот формат", message: "Попробуй по другому")
-        }
+            if currentValue >= 0 && currentValue <= 1 {
+                switch textField.tag {                                        //тоже tag настраиваем
+                case 0: redSlider.value = currentValue
+                case 1: greenSlider.value = currentValue
+                case 2: blueSlider.value = currentValue
+                default: break
+                }
+                setColor()
+                setValueForLabel()
+            } else { showAllert(tittle: "Warning", message: "Попробуй от 0 до 1") }
+        } else { showAllert(tittle: "Warning", message: "Только цифры!") }
     }
 }
 
@@ -148,7 +156,7 @@ extension ViewController {
     
     func showAllert(tittle: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default)
+        let okAction = UIAlertAction(title: "Понял понял", style: .default)
         alert.addAction(okAction)
         present(alert, animated: true)
     }
