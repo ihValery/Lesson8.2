@@ -24,14 +24,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueTextField: UITextField!
     
     override func viewDidLoad() {
-        
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
         setMyDesign()
         setColor()                                                      //что бы сразу цвета и значения подгрузились
         setValueForLabel()
         setValueForTextField()
         
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        addDoneButtonTo(redTextField)
+        addDoneButtonTo(greenTextField)
+        addDoneButtonTo(blueTextField)
     }
     
     @IBAction func rgbSliderAction(_ sender: UISlider) {
@@ -88,4 +90,68 @@ class ViewController: UIViewController {
         String(format: "%.2f", slider.value)
     }
 }
+    
+extension ViewController: UITextFieldDelegate {
+    //скрываем клавиатуру по нажатию на "Done"
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //скрывает клавиатуру по тапу за пределами TextField (без опционала не работает)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)                                              //скрывает клавиатуру для любого объекта
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text else {
+            return
+        }
+        if let currentValue = Float(text) {
+            switch textField.tag {                                        //тоже tag настраиваем
+            case 0: redSlider.value = currentValue
+            case 1: greenSlider.value = currentValue
+            case 2: blueSlider.value = currentValue
+            default: break
+            }
+            setColor()
+            setValueForLabel()
+        } else {
+            showAllert(tittle: "Не тот формат", message: "Попробуй по другому")
+        }
+    }
+}
+
+extension ViewController {
+    //метод для отображения кнопки "Готово" на цифровой клавиатуре
+    func addDoneButtonTo(_ textField: UITextField) {
+        let keyboardToolbar = UIToolbar()
+        textField.inputAccessoryView = keyboardToolbar
+        keyboardToolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Готово",
+                                         style: .done,
+                                         target: self,
+                                         action: #selector(didTapDone))
+        
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                            target: nil,
+                                            action: nil)
+        
+        keyboardToolbar.items = [flexBarButton, doneButton]
+    }
+    
+    @objc func didTapDone() {
+        view.endEditing(true)
+    }
+    
+    func showAllert(tittle: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+}
+
 

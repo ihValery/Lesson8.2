@@ -145,12 +145,12 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.00" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYs-r0-pOA">
+                                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.00" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OYs-r0-pOA">
                                                                 <rect key="frame" x="0.0" y="46.666666666666686" width="50" height="36.666666666666657"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.00" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bpu-hC-q7o">
+                                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.00" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bpu-hC-q7o">
                                                                 <rect key="frame" x="0.0" y="93.333333333333314" width="50" height="36.666666666666657"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
